@@ -76,6 +76,11 @@ CanvasDisplay.prototype.clearDisplay = function() {
 var wallSprites = document.createElement("img");
 otherSprites.src = "img/sprites.png";
 
+var lavaSprites = document.createElement("img");
+lavaSprites.src = "img/lava.png";
+
+var coinSprites = document.createElement("img");
+coinSprites.src = "img/coin.jpg";
 
 CanvasDisplay.prototype.drawBackground = function() {
   var view = this.viewport;
@@ -92,8 +97,9 @@ CanvasDisplay.prototype.drawBackground = function() {
       var screenY = (y - view.top) * scale;
       var tileX = tile == "lava" ? scale : 0;
       this.cx.drawImage(otherSprites,
-                        tileX,         0, scale, scale,
+                        tileX, 0, scale, scale,
                         screenX, screenY, scale, scale);
+
     }
   }
 };
@@ -136,7 +142,7 @@ CanvasDisplay.prototype.drawActors = function() {
       this.drawPlayer(x, y, width, height);
     } else {
       var tileX = (actor.type == "coin" ? 2 : 1) * scale;
-      this.cx.drawImage(otherSprites,
+      this.cx.drawImage(coinSprites,
                         tileX, 0, width, height,
                         x,     y, width, height);
     }
